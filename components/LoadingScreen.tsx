@@ -223,7 +223,7 @@ export default function LoadingScreen() {
             opacity: 0,
           }}
         >
-          Coffee &amp; Brunch
+          Coffee · Brunch · Cocktails
         </div>
       </div>
     </div>

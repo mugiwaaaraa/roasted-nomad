@@ -276,11 +276,14 @@ export default function MenuPage() {
     const hash = window.location.hash
     if (hash) {
       setTimeout(() => {
-        const el = document.querySelector(hash)
-        if (el) el.scrollIntoView({ behavior: 'smooth' })
-      }, 300)
+        const id = hash.replace('#', '')
+        const el = document.getElementById(id)
+        if (el) {
+          el.scrollIntoView({ behavior: 'instant', block: 'start' })
+        }
+      }, 500)
     } else {
-      window.scrollTo(0, 0)
+      window.scrollTo({ top: 0, behavior: 'instant' })
     }
   }, [])
 

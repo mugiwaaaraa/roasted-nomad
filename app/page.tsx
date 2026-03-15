@@ -1,3 +1,4 @@
+import LoadingScreen from '@/components/LoadingScreen'
 import Nav from '@/components/Nav'
 import Hero from '@/components/Hero'
 import ScrollStory from '@/components/ScrollStory'
@@ -12,6 +13,7 @@ import Footer from '@/components/Footer'
 export default function Home() {
   return (
     <>
+      <LoadingScreen />
       <Nav />
       <Hero />
       <ScrollStory />

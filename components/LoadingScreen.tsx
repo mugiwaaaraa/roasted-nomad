@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import Image from 'next/image'
 import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
@@ -12,35 +12,42 @@ export default function LoadingScreen() {
   const logoRef = useRef<HTMLDivElement>(null)
   const topPanelRef = useRef<HTMLDivElement>(null)
   const bottomPanelRef = useRef<HTMLDivElement>(null)
+  const [done, setDone] = useState(false)
 
   useGSAP(() => {
     document.documentElement.classList.add('loading')
 
-    const tl = gsap.timeline({
-      onComplete: () => {
-        document.documentElement.classList.remove('loading')
-        gsap.set(containerRef.current, { display: 'none' })
-      },
-    })
-
     // Logo fades in
-    tl.fromTo(
+    gsap.fromTo(
       logoRef.current,
       { opacity: 0, scale: 0.85 },
-      { opacity: 1, scale: 1, duration: 0.9, ease: 'power3.out' }
+      { opacity: 1, scale: 1, duration: 0.8 }
     )
-    // Hold
-    tl.to({}, { duration: 0.9 })
-    // Logo fades out + panels split
-    tl.to(logoRef.current, { opacity: 0, duration: 0.4, ease: 'power2.in' }, 'split')
-    tl.to(topPanelRef.current, { yPercent: -100, duration: 0.8, ease: 'power3.inOut' }, 'split+=0.1')
-    tl.to(bottomPanelRef.current, { yPercent: 100, duration: 0.8, ease: 'power3.inOut' }, 'split+=0.1')
+
+    // After 1.8s, two panels slide simultaneously
+    gsap.to(topPanelRef.current, {
+      y: '-100%',
+      duration: 0.7,
+      ease: 'power2.inOut',
+      delay: 1.8,
+    })
+    gsap.to(bottomPanelRef.current, {
+      y: '100%',
+      duration: 0.7,
+      ease: 'power2.inOut',
+      delay: 1.8,
+      onComplete: () => {
+        document.documentElement.classList.remove('loading')
+        setDone(true)
+      },
+    })
   }, { scope: containerRef })
+
+  if (done) return null
 
   return (
     <div
       ref={containerRef}
-      className="loading-screen"
       style={{
         position: 'fixed',
         inset: 0,

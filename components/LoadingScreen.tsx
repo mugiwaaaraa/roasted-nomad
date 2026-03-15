@@ -91,7 +91,7 @@ export default function LoadingScreen() {
           alt="Roasted Nomad"
           width={280}
           height={120}
-          style={{ objectFit: 'contain', width: '280px', height: 'auto', filter: 'drop-shadow(0 0 20px rgba(255,255,255,0.15))' }}
+          style={{ objectFit: 'contain', width: '280px', height: 'auto' }}
           priority
         />
       </div>

@@ -403,8 +403,8 @@ export default function MenuPage() {
         {SECTIONS.map((section) => (
           <FadeSection key={section.id}>
             <section
-              id={section.id}
-              style={{ marginBottom: '64px', scrollMarginTop: '80px' }}
+              id={['coffee', 'cocktails'].includes(section.id) ? undefined : section.id}
+              style={{ marginBottom: '64px' }}
             >
               <h2
                 id={
@@ -420,6 +420,7 @@ export default function MenuPage() {
                   color: '#2C1810',
                   margin: '0 0 8px 0',
                   lineHeight: 1.1,
+                  scrollMarginTop: ['breakfast', 'coffee', 'cocktails'].includes(section.id) ? '100px' : undefined,
                 }}
               >
                 {section.title}

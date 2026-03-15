@@ -46,6 +46,7 @@ export default function LoadingScreen() {
         inset: 0,
         zIndex: 9999,
         pointerEvents: 'none',
+        backgroundColor: '#2C1810',
       }}
     >
       {/* Top panel */}

@@ -403,28 +403,29 @@ export default function MenuPage() {
         {SECTIONS.map((section) => (
           <FadeSection key={section.id}>
             <section
-              id={['coffee', 'cocktails'].includes(section.id) ? undefined : section.id}
+              id={section.id === 'breakfast' || section.id === 'coffee' || section.id === 'cocktails' ? undefined : section.id}
               style={{ marginBottom: '64px' }}
             >
-              <h2
-                id={
-                  section.id === 'breakfast' ? 'brunch' :
-                  section.id === 'coffee' ? 'coffee' :
-                  section.id === 'cocktails' ? 'cocktails' :
-                  undefined
-                }
-                style={{
-                  fontFamily: 'var(--font-playfair-display)',
-                  fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)',
-                  fontWeight: 900,
-                  color: '#2C1810',
-                  margin: '0 0 8px 0',
-                  lineHeight: 1.1,
-                  scrollMarginTop: ['breakfast', 'coffee', 'cocktails'].includes(section.id) ? '100px' : undefined,
-                }}
-              >
-                {section.title}
-              </h2>
+              {section.id === 'breakfast' && (
+                <h2 id="brunch" style={{ fontFamily: 'var(--font-playfair-display)', fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 900, color: '#2C1810', margin: '0 0 8px 0', lineHeight: 1.1, scrollMarginTop: '100px' }}>
+                  {section.title}
+                </h2>
+              )}
+              {section.id === 'coffee' && (
+                <h2 id="coffee" style={{ fontFamily: 'var(--font-playfair-display)', fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 900, color: '#2C1810', margin: '0 0 8px 0', lineHeight: 1.1, scrollMarginTop: '100px' }}>
+                  {section.title}
+                </h2>
+              )}
+              {section.id === 'cocktails' && (
+                <h2 id="cocktails" style={{ fontFamily: 'var(--font-playfair-display)', fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 900, color: '#2C1810', margin: '0 0 8px 0', lineHeight: 1.1, scrollMarginTop: '100px' }}>
+                  {section.title}
+                </h2>
+              )}
+              {section.id !== 'breakfast' && section.id !== 'coffee' && section.id !== 'cocktails' && (
+                <h2 style={{ fontFamily: 'var(--font-playfair-display)', fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', fontWeight: 900, color: '#2C1810', margin: '0 0 8px 0', lineHeight: 1.1 }}>
+                  {section.title}
+                </h2>
+              )}
               <div style={{ width: '48px', height: '2px', background: '#C17D3C', marginBottom: '12px' }} />
               {section.subtitle && (
                 <p style={{

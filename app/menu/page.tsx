@@ -194,9 +194,7 @@ const NAV_LINKS = [
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
-function ItemRow({ item }: { item: MenuItem }) {
-  const isMobile = useIsMobile()
-
+function ItemRow({ item, isMobile }: { item: MenuItem; isMobile: boolean }) {
   return (
     <div style={{
       display: 'flex',
@@ -275,7 +273,15 @@ export default function MenuPage() {
   const isMobile = useIsMobile()
 
   useEffect(() => {
-    window.scrollTo(0, 0)
+    const hash = window.location.hash
+    if (hash) {
+      setTimeout(() => {
+        const el = document.querySelector(hash)
+        if (el) el.scrollIntoView({ behavior: 'smooth' })
+      }, 300)
+    } else {
+      window.scrollTo(0, 0)
+    }
   }, [])
 
   return (
@@ -300,6 +306,7 @@ export default function MenuPage() {
             alt="Roasted Nomad"
             width={120}
             height={36}
+            loading="lazy"
             style={{ objectFit: 'contain', height: '36px', width: 'auto', filter: 'brightness(0) invert(1)' }}
           />
         </Link>
@@ -441,7 +448,7 @@ export default function MenuPage() {
               )}
               <div>
                 {section.items.map((item) => (
-                  <ItemRow key={item.name} item={item} />
+                  <ItemRow key={item.name} item={item} isMobile={isMobile} />
                 ))}
               </div>
             </section>

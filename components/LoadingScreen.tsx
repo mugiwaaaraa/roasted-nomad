@@ -91,8 +91,8 @@ export default function LoadingScreen() {
           src="/logo.png"
           alt="Roasted Nomad"
           width={280}
-          height={120}
-          style={{ objectFit: 'contain', width: '280px', height: 'auto' }}
+          height={280}
+          style={{ objectFit: 'contain' }}
           priority
         />
       </div>

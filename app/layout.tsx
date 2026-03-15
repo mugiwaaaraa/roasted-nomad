@@ -70,8 +70,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/logo.png" media="(prefers-color-scheme: light)" />
-        <link rel="icon" href="/logo-dark.png" media="(prefers-color-scheme: dark)" />
+        <link rel="icon" href="/logo.png" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link
